@@ -14,22 +14,21 @@ export default function Quiz() {
     const [data, setData] = React.useState([])
 
     // map over my question data and create question component
-    const questions = data.map(item => {
+    const questions = data.map((item , index) => {
         return(
         <Question
         question = {item.question}
         correctAnswer = {item.correct_answer}
         incorrectAnswers = {item.incorrect_answers}
+        answers = {item.incorrect_answers + ',' + item.correct_answer}
          />
         )
     })
-    console.log(questions)
-
 
 
     const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
 
-    function handleClick() {
+    function handleClick(){
         audio.play();
     }
     return (
