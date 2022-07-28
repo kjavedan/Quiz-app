@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700&family=Karla:wght@200;300;400;500;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Inter', 'Karla', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body main .start {
+  height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+body main .start .top-blob {
+  position: absolute;
+  right: 0;
+}
+
+body main .start .bottom-blob {
+  position: absolute;
+  bottom: 0;
+}
+
+body main .start .content {
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+body main .start .content__title {
+  font-family: 'Karla';
+  font-size: 3rem;
+  color: #293264;
+}
+
+body main .start .content__text {
+  color: #293264;
+  font-family: 'Inter';
+  text-transform: capitalize;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+body main .start .content__button {
+  width: 150px;
+  height: 50px;
+  background-color: #4D5B9E;
+  margin: 2rem auto;
+  border-radius: 15px;
+  border: none;
+  font: bold 1.2rem 'Karla';
+  color: white;
+}
+
+body main .start .content__button:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+body main .start .content__button:active {
+  -webkit-box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+body main .quiz {
+  height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+body main .quiz .top-blob {
+  position: absolute;
+  right: 0;
+}
+
+body main .quiz .bottom-blob {
+  position: absolute;
+  bottom: 0;
+}
+
+body main .quiz .questions-container {
+  width: 800px;
+  height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 1rem;
+}
+
+body main .quiz .questions-container .question {
+  margin-top: .3rem;
+  height: 100px;
+  padding: .3rem;
+  font-weight: bold;
+  color: #293264;
+  border-bottom: solid 1px #DBDEF0;
+}
+
+body main .quiz .questions-container .question_title {
+  font: bold 1rem;
+}
+
+body main .quiz .questions-container .question .answers-container {
+  width: 100%;
+  height: 20px;
+  margin-top: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main .quiz .questions-container .question .answers-container .answer {
+  padding: 7px 25px;
+  border: 1px solid #4D5B9E;
+  border-radius: 14px;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font: 500 15px 'Inter';
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+body main .quiz .questions-container .check-answers {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 180px;
+  height: 50px;
+  background-color: #4D5B9E;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  font: bold 1rem 'Karla';
+  cursor: pointer;
+}
+
+body main .quiz .questions-container .check-answers:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+body main .quiz .questions-container .check-answers:active {
+  -webkit-box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+/*# sourceMappingURL=index.css.map */
