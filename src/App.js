@@ -6,7 +6,7 @@ function App() {
 
  // state to check if we started playing or not
   const [start, setStart] = React.useState(false)
-
+  console.log('app rendered')
   return (
     <main>
     {
