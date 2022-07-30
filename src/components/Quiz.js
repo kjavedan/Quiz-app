@@ -1,6 +1,5 @@
 import React from "react";
 import { nanoid } from 'nanoid'
-
 import Question from "./Question";
 
 export default function Quiz() {
@@ -20,9 +19,9 @@ export default function Quiz() {
     // console.log(data)
 
     // tracking api calls in order to set our custom state
-    React.useEffect(()=>{
+    React.useEffect(() => {
         setState(initiolizeState())
-    },[data])
+    }, [data])
 
 
     const questions = data.map((item) => {
@@ -37,57 +36,78 @@ export default function Quiz() {
             answers[currentIndex] = answers[randomIndex];
             answers[randomIndex] = temp;
         }
-        return {question, correctAnswer, answers}
+        return { question, correctAnswer, answers }
     })
- 
+
     // our custom state after suffling the answers and give unique property for each answer
     const [state, setState] = React.useState([]);
-    
+
     // function to initilize our custom state
     function initiolizeState() {
         const newArr = [];
-        questions.map(question =>{
+        questions.map(question => {
             newArr.push({
-                question : question.question,
-                correctAnswer : question.correctAnswer,
-                answers : question.answers.map(answer =>{
-                    return({
-                        body : answer,
-                        id : nanoid(),
-                        isHeld : false,
-                        isCorrect : false
+                question: question.question,
+                correctAnswer: question.correctAnswer,
+                answers: question.answers.map(answer => {
+                    return ({
+                        body: answer,
+                        id: nanoid(),
+                        isHeld: false,
+                        isCorrect: false
                     })
-                }) 
+                })
             })
         })
         return newArr
     }
-    
-    
-        // map over state and create question component
-        const questionElements = state.map((item) => {
-            return(
-            <Question
-            key = {nanoid()}
-            question = {item.question}
-            correctAnswer = {item.correctAnswer}
-            answers = {item.answers}
-             />
-            )
-        })
-        
 
+    // map over state and create question component
+    const questionElements = state.map((item) => {
         return (
-            <div className="quiz">
-                <img className='top-blob' src="../images/top-blob.png"></img>
-                <div className="questions-container">
-                <button className="check-answers">Check Answers</button>
-                </div>
-                <img className='bottom-blob' src='../images/bottom-blob.png'></img>
-            </div>
+            <Question
+                key={nanoid()}
+                question={item.question}
+                correctAnswer={item.correctAnswer}
+                answers={item.answers}
+                setState={setState}
+                handleClick={handleClick}
+            />
         )
+    })
+
+    function handleClick(question, id) {
+        state.map(item => {
+            if (item.question === question) {
+                console.log(item.answers)
+            }
+        })
+        setState(prevState => {
+            return prevState.map(item => {
+                if (item.question === question) {
+                    return ({
+                        ...item, answers: item.answers.map(answer => {
+                            return answer.id === id ?
+                                { ...answer, isHeld: !answer.isHeld } :
+                                { ...answer, isHeld: false }
+                        })
+                    })
+                }
+                else return item;
+            })
+        })
+    }
+    console.log(state)
+
+    return (
+        <div className="quiz">
+            <img className='top-blob' src="../images/top-blob.png"></img>
+            <div className="questions-container">
+                {questionElements}
+                <button className="check-answers">Check Answers</button>
+            </div>
+            <img className='bottom-blob' src='../images/bottom-blob.png'></img>
+        </div>
+    )
 }
-/*
-* let's get the answers in a seprate state with some extra proprty id, isHeld, correctAnswer, answer
-*/
 
