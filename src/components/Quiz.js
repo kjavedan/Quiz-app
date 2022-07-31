@@ -23,7 +23,7 @@ export default function Quiz() {
         setState(initiolizeState())
     }, [data])
 
-
+    // suffling our answers
     const questions = data.map((item) => {
         const answers = (item.correct_answer + ',' + item.incorrect_answers).split(",");
         const question = item.question;
@@ -39,7 +39,7 @@ export default function Quiz() {
         return { question, correctAnswer, answers }
     })
 
-    // our custom state after suffling the answers and give unique property for each answer
+    // our custom state after suffling the answers and giving unique properties for each answer 
     const [state, setState] = React.useState([]);
 
     // function to initilize our custom state
@@ -54,7 +54,9 @@ export default function Quiz() {
                         body: answer,
                         id: nanoid(),
                         isHeld: false,
-                        isCorrect: false
+                        isCorrect: false,
+                        isIncorrect: false,
+                        showCorrect: false
                     })
                 })
             })
@@ -75,13 +77,9 @@ export default function Quiz() {
             />
         )
     })
-
+    // handling the click event of each answer button
     function handleClick(question, id) {
-        state.map(item => {
-            if (item.question === question) {
-                console.log(item.answers)
-            }
-        })
+
         setState(prevState => {
             return prevState.map(item => {
                 if (item.question === question) {
@@ -97,6 +95,37 @@ export default function Quiz() {
             })
         })
     }
+
+    // function to check the given answers
+    // challenge : map over each question and change the correct answer style to green
+    // if the selected button is incorrect change the style to red
+    // if the selectd buttom answer is correct add +1 to our count
+    // change the check answer style and add a text to show the user how many answer he answered correctly
+    function checkAnswers() {
+        let count = 0;
+        setState(prevState => {
+            return prevState.map(item => {
+                const correctAnswer = item.correctAnswer;
+                return ({
+                    ...item, answers: item.answers.map(answer => {
+                        if (answer.isHeld && answer.body === correctAnswer) {
+                            count++;
+                            return {...answer, isCorrect: true }
+                        }
+                        else if (answer.isHeld && answer.body != correctAnswer) {
+                            return { ...answer, isIncorrect: true }
+                        }
+                        else if (!answer.isHeld && answer.body === correctAnswer) {
+                            return { ...answer, showCorrect: true }
+                        }
+                        else return answer
+                    })
+                })
+            })
+        })
+        console.log(state)
+    }
+
     console.log(state)
 
     return (
@@ -104,7 +133,7 @@ export default function Quiz() {
             <img className='top-blob' src="../images/top-blob.png"></img>
             <div className="questions-container">
                 {questionElements}
-                <button className="check-answers">Check Answers</button>
+                <button className="check-answers" onClick={checkAnswers}>Check Answers</button>
             </div>
             <img className='bottom-blob' src='../images/bottom-blob.png'></img>
         </div>

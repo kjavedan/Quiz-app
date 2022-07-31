@@ -121,6 +121,18 @@ body {
                 border: none;
                 background-color: $primary-clr-3;
               }
+              &.correct{
+                border: none;
+                background-color : #94D7A2;
+              }
+              &.blur{
+                border : solid 1px lightgray;
+                color: lightgray;
+              }
+              &.incorrect{
+                border: none;
+                background-color : #F8BCBC;
+              }
             }
           }
         }
