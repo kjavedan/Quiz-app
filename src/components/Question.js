@@ -5,7 +5,13 @@ export default function Question(props) {
 
     const answers = props.answers.map(answer => {
         return (<div
-            className={`answer ${answer.isHeld ? "held" : ""} ${answer.isCorrect ? "correct" : ""} ${answer.isIncorrect ? "incorrect" : ""}`}
+            className={`answer 
+            ${answer.isHeld ? "held" : ""} 
+            ${answer.showCorrect ? "show-correct" : ""}
+            ${answer.isCorrect ? "correct" : ""} 
+            ${answer.isIncorrect ? "incorrect" : ""}
+            ${answer.isBlur ? "blur" : ""}
+            `}
             key={answer.id}
             onClick={() => props.handleClick(props.question,answer.id)}
         >{answer.body}</div>)

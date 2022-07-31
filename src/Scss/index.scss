@@ -121,9 +121,14 @@ body {
                 border: none;
                 background-color: $primary-clr-3;
               }
-              &.correct{
+              &.show-correct{
                 border: none;
-                background-color : #94D7A2;
+                background-color: #94D7A2;
+                opacity: .5;
+              }
+              &.correct {
+                border: none;
+                background-color : #85d496;
               }
               &.blur{
                 border : solid 1px lightgray;

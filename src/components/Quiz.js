@@ -42,6 +42,13 @@ export default function Quiz() {
     // our custom state after suffling the answers and giving unique properties for each answer 
     const [state, setState] = React.useState([]);
 
+    // state for number of correct answer
+    const [countCorrectAnswers, setCountCorrectAnswers] = React.useState(0);
+
+    //state to finish the game
+    const [endQuiz, setEndQuiz] = React.useState(false)
+
+
     // function to initilize our custom state
     function initiolizeState() {
         const newArr = [];
@@ -56,7 +63,8 @@ export default function Quiz() {
                         isHeld: false,
                         isCorrect: false,
                         isIncorrect: false,
-                        showCorrect: false
+                        showCorrect: false,
+                        isBlur : false
                     })
                 })
             })
@@ -96,37 +104,28 @@ export default function Quiz() {
         })
     }
 
-    // function to check the given answers
-    // challenge : map over each question and change the correct answer style to green
-    // if the selected button is incorrect change the style to red
-    // if the selectd buttom answer is correct add +1 to our count
-    // change the check answer style and add a text to show the user how many answer he answered correctly
     function checkAnswers() {
-        let count = 0;
         setState(prevState => {
             return prevState.map(item => {
                 const correctAnswer = item.correctAnswer;
                 return ({
                     ...item, answers: item.answers.map(answer => {
                         if (answer.isHeld && answer.body === correctAnswer) {
-                            count++;
                             return {...answer, isCorrect: true }
+                        }
+                        else if(!answer.isHeld && answer.body === correctAnswer){
+                            return{...answer, showCorrect : true}
                         }
                         else if (answer.isHeld && answer.body != correctAnswer) {
                             return { ...answer, isIncorrect: true }
                         }
-                        else if (!answer.isHeld && answer.body === correctAnswer) {
-                            return { ...answer, showCorrect: true }
-                        }
-                        else return answer
+                        else return {...answer, isBlur : true}
                     })
                 })
             })
         })
-        console.log(state)
     }
-
-    console.log(state)
+   
 
     return (
         <div className="quiz">
@@ -134,6 +133,7 @@ export default function Quiz() {
             <div className="questions-container">
                 {questionElements}
                 <button className="check-answers" onClick={checkAnswers}>Check Answers</button>
+                <span>{count}</span>
             </div>
             <img className='bottom-blob' src='../images/bottom-blob.png'></img>
         </div>
