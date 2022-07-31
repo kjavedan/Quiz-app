@@ -7,21 +7,9 @@ export default function Quiz() {
     const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
 
     console.log('Quiz rendered')
-    // making an api call to receive the data
-    React.useEffect(() => { // the use effect hook runs last
-        fetch('https://opentdb.com/api.php?amount=5&type=multiple')
-            .then(res => res.json())
-            .then(data => setData(data.results))
-    }, []);
 
     // state for our received date from the api
     const [data, setData] = React.useState([]);
-    // console.log(data)
-
-    // tracking api calls in order to set our custom state
-    React.useEffect(() => {
-        setState(initiolizeState())
-    }, [data])
 
     // suffling our answers
     const questions = data.map((item) => {
@@ -41,13 +29,13 @@ export default function Quiz() {
 
     // our custom state after suffling the answers and giving unique properties for each answer 
     const [state, setState] = React.useState([]);
-
-    // state for number of correct answer
-    const [countCorrectAnswers, setCountCorrectAnswers] = React.useState(0);
+    console.log(state)
 
     //state to finish the game
     const [endQuiz, setEndQuiz] = React.useState(false)
 
+    // state to call the api again
+    const [callApi, setCallApi] = React.useState(false)
 
     // function to initilize our custom state
     function initiolizeState() {
@@ -64,7 +52,7 @@ export default function Quiz() {
                         isCorrect: false,
                         isIncorrect: false,
                         showCorrect: false,
-                        isBlur : false
+                        isBlur: false
                     })
                 })
             })
@@ -111,29 +99,63 @@ export default function Quiz() {
                 return ({
                     ...item, answers: item.answers.map(answer => {
                         if (answer.isHeld && answer.body === correctAnswer) {
-                            return {...answer, isCorrect: true }
+                            return { ...answer, isCorrect: true }
                         }
-                        else if(!answer.isHeld && answer.body === correctAnswer){
-                            return{...answer, showCorrect : true}
+                        else if (!answer.isHeld && answer.body === correctAnswer) {
+                            return { ...answer, showCorrect: true }
                         }
                         else if (answer.isHeld && answer.body != correctAnswer) {
                             return { ...answer, isIncorrect: true }
                         }
-                        else return {...answer, isBlur : true}
+                        else return { ...answer, isBlur: true }
                     })
                 })
             })
         })
+        setEndQuiz(true);
     }
-   
+
+    // function for counting the number of correct answers on each render
+    let count = 0;
+    function countCorrectAnswers() {
+        state.map(item => {
+            item.answers.map(answer => {
+                if (answer.isCorrect) {
+                    count++;
+                }
+            })
+        })
+    }
+    countCorrectAnswers();
+
+    // function to play again
+    function playAgain() {
+        setCallApi(prevState => !prevState)
+        setEndQuiz(false) 
+    }
+    // making an api call to receive the data
+    React.useEffect(() => { // the use effect hook runs last
+        fetch('https://opentdb.com/api.php?amount=5&type=multiple')
+            .then(res => res.json())
+            .then(data => setData(data.results))
+    }, [callApi]);
+
+      // tracking api calls in order to set our custom state
+      React.useEffect(() => {
+        setState(initiolizeState())
+    }, [data])
+
 
     return (
         <div className="quiz">
             <img className='top-blob' src="../images/top-blob.png"></img>
             <div className="questions-container">
                 {questionElements}
-                <button className="check-answers" onClick={checkAnswers}>Check Answers</button>
-                <span>{count}</span>
+                <div className="result">
+                    {endQuiz && <p className="count-correct-answers">{`You scored ${count}/5 correct answers`}</p>}
+                    {!endQuiz && <button className="check-answers" onClick={checkAnswers}>Check Answers</button>}
+                    {endQuiz && <button className="check-answers" onClick={playAgain}>Play again</button>}
+                </div>
             </div>
             <img className='bottom-blob' src='../images/bottom-blob.png'></img>
         </div>
