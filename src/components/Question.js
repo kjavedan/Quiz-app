@@ -13,7 +13,7 @@ export default function Question(props) {
             ${answer.isBlur ? "blur" : ""}
             `}
             key={answer.id}
-            onClick={() => props.handleClick(props.question,answer.id)}
+            onClick={() => props.handleClick(props.question, answer.id)}
         >{answer.body}</div>)
     })
 

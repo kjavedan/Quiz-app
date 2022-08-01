@@ -5,7 +5,7 @@ import Quiz from './components/Quiz';
 function App() {
 
  // state to check if we started playing or not
-  const [start, setStart] = React.useState(false)
+  const [start, setStart] = React.useState(true)
   console.log('app rendered')
   return (
     <main>

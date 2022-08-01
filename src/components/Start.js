@@ -7,7 +7,7 @@ export default function Start(props) {
 
     function handleClick() {
         audio.play();
-        props.setStart(true);
+        props.setStart(false);
     }
 
 
