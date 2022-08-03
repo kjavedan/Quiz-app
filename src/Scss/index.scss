@@ -1,9 +1,8 @@
 @import './config';
-
+@import './responsive';
 body {
 
   main {
-
     .start {
       height: 100vh;
       width: 100%;
@@ -71,6 +70,10 @@ body {
       width: 100%;
       margin: 0 auto;
       position: relative;
+      
+      @include tablet{
+        height: auto;
+      }
 
       .top-blob {
         position: absolute;
@@ -83,12 +86,15 @@ body {
       }
 
       .questions-container {
-        width: 800px;
-        height: 100vh;
+        width: 700px;
+        height: auto;
         margin: 0 auto;
         position: relative;
         padding-top: 1rem;
-
+         
+        @include tablet{
+          width: 80%;
+        }
         .question {
           padding-bottom: .7rem;
           margin-top: .7rem;
@@ -97,6 +103,7 @@ body {
           color: $primary-clr-1;
           border-bottom: solid 1px #DBDEF0;
 
+         
           &_title {
             font: bold 1rem;
           }
@@ -107,6 +114,9 @@ body {
             margin-top: 1rem;
             display: flex;
             align-items: center;
+            @include tablet {
+                flex-direction: column;
+              }
 
             .answer {
               padding: 7px 25px;
@@ -117,6 +127,9 @@ body {
               font: 500 15px 'Inter';
               margin-right: 1rem;
               cursor: pointer;
+              @include tablet {
+                  margin-top: 1rem;
+                }
 
               &.held {
                 border: none;
@@ -151,6 +164,10 @@ body {
           display: flex;
           justify-content: space-around;
           padding-top: 1rem;
+          
+          @include tablet{
+            padding-bottom: 8rem;
+          }
           .check-answers {
             width: 180px;
             height: 50px;
@@ -174,6 +191,11 @@ body {
             font: bold 1.5rem 'Karla';
             color: $primary-clr-1;
             line-height: 50px;
+
+            @include tablet{
+              font-size: 1rem;
+              line-height: 1.5rem;
+            }
           }
         }
 
