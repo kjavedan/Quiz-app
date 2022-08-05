@@ -39,7 +39,7 @@ export default function Categories(props) {
 
       {/* button 3 */}
         <button 
-        value={"Math"} 
+        value={"math"} 
         onClick={props.handleClick} 
         className="btn">
         Mathematics 

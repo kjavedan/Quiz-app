@@ -17,7 +17,7 @@ export default function Quiz(props) {
 
      function handleClick(event){
         props.audio.play();
-        // setSelectCategory(false);
+        setSelectCategory(false);
         setCategory(event.target.value);
   }
 
@@ -32,6 +32,7 @@ export default function Quiz(props) {
                     :
                     <Exam
                     audio ={props.audio}
+                    category = {category}
                      />
             }
         </div>

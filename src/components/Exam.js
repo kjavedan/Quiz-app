@@ -110,7 +110,30 @@ export default function Exam(props) {
     }
     // making an api call to receive the data
     React.useEffect(() => { // the use effect hook runs last
-        fetch('https://opentdb.com/api.php?amount=5&type=multiple')
+        let questionCategory;
+        switch (props.category) {
+            case 'general-info':
+                questionCategory = 'https://opentdb.com/api.php?amount=5';
+                break;
+            case 'IT':
+                questionCategory = 'https://opentdb.com/api.php?amount=5&category=18'
+                break;
+            case 'math':
+                questionCategory = 'https://opentdb.com/api.php?amount=5&category=19'
+                break;
+            case 'science':
+                questionCategory = 'https://opentdb.com/api.php?amount=5&category=17'
+                break;
+            case 'history':
+                questionCategory = 'https://opentdb.com/api.php?amount=5&category=23'
+                break;
+            case 'sports':
+                questionCategory = 'https://opentdb.com/api.php?amount=5&category=21'
+                break;
+            default:
+                break;
+        }
+        fetch(questionCategory)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
