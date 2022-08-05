@@ -150,7 +150,7 @@ export default function Exam() {
     }
 
   return (
-   <div className="quiz">
+   <div className="exam">
             <img className='top-blob' src="../images/top-blob.png"></img>
             <div className="questions-container">
                 {questionElements}
