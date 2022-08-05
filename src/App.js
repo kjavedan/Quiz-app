@@ -4,6 +4,8 @@ import Quiz from './components/Quiz';
 
 function App() {
 
+  const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
+
  // state to check if we started playing or not
   const [start, setStart] = React.useState(true)
   console.log('app rendered')
@@ -12,10 +14,13 @@ function App() {
     {
       !start 
     ? 
-    <Quiz />
+    <Quiz
+    audio ={audio}
+     />
      :
     <Start
     setStart = {setStart}
+    audio ={audio}
      />
     }
     </main>

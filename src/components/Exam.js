@@ -2,10 +2,7 @@ import React from 'react'
 import { nanoid } from 'nanoid'
 import Question from "./Question"
 
-export default function Exam() {
-    // the sound when the button is clicked
-    const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
-
+export default function Exam(props) {
 
     // state for our received date from the api
     const [data, setData] = React.useState([]);
@@ -69,7 +66,7 @@ export default function Exam() {
     }
 
     function checkAnswers() {
-        audio.play();
+        props.audio.play();
         setState(prevState => {
             return prevState.map(item => {
                 const correctAnswer = item.correctAnswer;
@@ -107,7 +104,7 @@ export default function Exam() {
 
     // function to play again
     function playAgain() {
-        audio.play();
+        props.audio.play();
         setCallApi(prevState => !prevState)
         setEndQuiz(false)
     }

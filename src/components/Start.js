@@ -2,11 +2,10 @@ import React from "react";
 
 export default function Start(props) {
 
-    const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
 
 
     function handleClick() {
-        audio.play();
+        props.audio.play();
         props.setStart(false);
     }
 
