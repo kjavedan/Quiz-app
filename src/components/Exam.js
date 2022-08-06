@@ -9,7 +9,7 @@ export default function Exam(props) {
 
     // suffling our answers
     const questions = data.map((item) => {
-        const answers = (item.correct_answer + ',' + item.incorrect_answers).split(",");
+        const answers = [...item.incorrect_answers, item.correct_answer];
         const question = item.question;
         const correctAnswer = item.correct_answer;
         // Fisher Yates Shuffle algorithem for shffling our array
@@ -133,6 +133,7 @@ export default function Exam(props) {
             default:
                 break;
         }
+        
         fetch(questionCategory)
             .then(res => res.json())
             .then(data => {
