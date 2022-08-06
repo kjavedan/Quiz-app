@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Inter', 'Karla', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Inter", "Karla", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -41,14 +41,14 @@ body main .start .content {
 }
 
 body main .start .content__title {
-  font-family: 'Karla';
+  font-family: "Karla";
   font-size: 3rem;
   color: #293264;
 }
 
 body main .start .content__text {
   color: #293264;
-  font-family: 'Inter';
+  font-family: "Inter";
   text-transform: capitalize;
   font-size: 1rem;
   margin-top: 1rem;
@@ -57,11 +57,11 @@ body main .start .content__text {
 body main .start .content__button {
   width: 150px;
   height: 50px;
-  background-color: #4D5B9E;
+  background-color: #4d5b9e;
   margin: 2rem auto;
   border-radius: 15px;
   border: none;
-  font: bold 1.2rem 'Karla';
+  font: bold 1.2rem "Karla";
   color: white;
 }
 
@@ -75,45 +75,57 @@ body main .start .content__button:active {
           box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-body main .quiz {
+body main .quiz .exam {
   height: 100vh;
   width: 100%;
   margin: 0 auto;
   position: relative;
 }
 
-body main .quiz .top-blob {
+@media screen and (max-width: 700px) {
+  body main .quiz .exam {
+    height: auto;
+  }
+}
+
+body main .quiz .exam .top-blob {
   position: absolute;
   right: 0;
 }
 
-body main .quiz .bottom-blob {
+body main .quiz .exam .bottom-blob {
   position: absolute;
   bottom: 0;
 }
 
-body main .quiz .questions-container {
-  width: 800px;
-  height: 100vh;
+body main .quiz .exam .questions-container {
+  width: 700px;
+  height: auto;
   margin: 0 auto;
   position: relative;
   padding-top: 1rem;
 }
 
-body main .quiz .questions-container .question {
-  padding-bottom: .7rem;
-  margin-top: .7rem;
+@media screen and (max-width: 700px) {
+  body main .quiz .exam .questions-container {
+    width: 80%;
+  }
+}
+
+body main .quiz .exam .questions-container .question {
+  padding-bottom: 0.7rem;
+  margin-top: 0.7rem;
   height: auto;
   font-weight: bold;
   color: #293264;
-  border-bottom: solid 1px #DBDEF0;
+  border-bottom: solid 1px #dbdef0;
 }
 
-body main .quiz .questions-container .question_title {
+body main .quiz .exam .questions-container .question_title {
   font: bold 1rem;
 }
 
-body main .quiz .questions-container .question .answers-container {
+body main .quiz .exam .questions-container .question .answers-container {
   width: 100%;
   height: auto;
   margin-top: 1rem;
@@ -125,42 +137,106 @@ body main .quiz .questions-container .question .answers-container {
           align-items: center;
 }
 
-body main .quiz .questions-container .question .answers-container .answer {
+@media screen and (max-width: 700px) {
+  body main .quiz .exam .questions-container .question .answers-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+body main .quiz .exam .questions-container .question .answers-container .answer {
   padding: 7px 25px;
-  border: 1px solid #4D5B9E;
+  border: 1px solid #4d5b9e;
   border-radius: 14px;
   text-align: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font: 500 15px 'Inter';
+  font: 500 15px "Inter";
   margin-right: 1rem;
   cursor: pointer;
 }
 
-body main .quiz .questions-container .check-answers {
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+@media screen and (max-width: 700px) {
+  body main .quiz .exam .questions-container .question .answers-container .answer {
+    margin-top: 1rem;
+  }
+}
+
+body main .quiz .exam .questions-container .question .answers-container .answer.held {
+  border: none;
+  background-color: #d6dbf5;
+}
+
+body main .quiz .exam .questions-container .question .answers-container .answer.show-correct {
+  border: none;
+  background-color: #94d7a2;
+  opacity: 0.5;
+}
+
+body main .quiz .exam .questions-container .question .answers-container .answer.correct {
+  border: none;
+  background-color: #85d496;
+}
+
+body main .quiz .exam .questions-container .question .answers-container .answer.blur {
+  border: solid 1px lightgray;
+  color: lightgray;
+}
+
+body main .quiz .exam .questions-container .question .answers-container .answer.incorrect {
+  border: none;
+  background-color: #f8bcbc;
+}
+
+body main .quiz .exam .questions-container .result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding-top: 1rem;
+}
+
+@media screen and (max-width: 700px) {
+  body main .quiz .exam .questions-container .result {
+    padding-bottom: 8rem;
+  }
+}
+
+body main .quiz .exam .questions-container .result .check-answers {
   width: 180px;
   height: 50px;
-  background-color: #4D5B9E;
+  background-color: #4d5b9e;
   border-radius: 15px;
   border: none;
   color: white;
-  font: bold 1rem 'Karla';
+  font: bold 1rem "Karla";
   cursor: pointer;
 }
 
-body main .quiz .questions-container .check-answers:focus {
+body main .quiz .exam .questions-container .result .check-answers:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-body main .quiz .questions-container .check-answers:active {
+body main .quiz .exam .questions-container .result .check-answers:active {
   -webkit-box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+body main .quiz .exam .questions-container .result .count-correct-answers {
+  font: bold 1.5rem "Karla";
+  color: #293264;
+  line-height: 50px;
+}
+
+@media screen and (max-width: 700px) {
+  body main .quiz .exam .questions-container .result .count-correct-answers {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
 }
 /*# sourceMappingURL=index.css.map */
