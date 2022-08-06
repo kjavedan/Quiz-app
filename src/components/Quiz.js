@@ -33,6 +33,7 @@ export default function Quiz(props) {
                     <Exam
                     audio ={props.audio}
                     category = {category}
+                    setSelectCategory = {setSelectCategory}
                      />
             }
         </div>
