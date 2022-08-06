@@ -105,6 +105,7 @@ export default function Exam(props) {
     // function to play again
     function playAgain() {
         props.audio.play();
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
         setCallApi(prevState => !prevState)
         setEndQuiz(false)
     }
@@ -170,6 +171,12 @@ export default function Exam(props) {
         return newArr
     }
 
+    // clicking change category take us to the categories page
+    function backToCategory(){
+        props.audio.play();
+        props.setSelectCategory(true)
+    }
+
   return (
    <div className="exam">
             <img className='top-blob' src="../images/top-blob.png"></img>
@@ -179,6 +186,7 @@ export default function Exam(props) {
                     {endQuiz && <p className="count-correct-answers">{`You scored ${count}/5 correct answers`}</p>}
                     {!endQuiz && <button className="check-answers" onClick={checkAnswers}>Check Answers</button>}
                     {endQuiz && <button className="check-answers" onClick={playAgain}>Play again</button>}
+                     <button onClick={backToCategory} className="back-to-categories">Change Category</button>
                 </div>
             </div>
             <img className='bottom-blob' src='../images/bottom-blob.png'></img>

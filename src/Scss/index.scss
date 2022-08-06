@@ -190,8 +190,9 @@ body {
               padding-bottom: 8rem;
             }
 
-            .check-answers {
-              width: 180px;
+            .check-answers, .back-to-categories {
+              padding: .3rem .5rem;
+              margin-right: .5rem;
               height: 50px;
               background-color: #4d5b9e;
               border-radius: 15px;
