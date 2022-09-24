@@ -106,7 +106,7 @@ body {
        @include common-style;
         .questions-container {
           width: 700px;
-          height: auto;
+          min-height: 100vh;
           margin: 0 auto;
           position: relative;
           padding-top: 1rem;
